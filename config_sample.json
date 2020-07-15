@@ -1,13 +1,13 @@
 {
-	"server":"www.suningfootball.com",
+	"server":"0.0.0.1",
 	"server_port":443,
-	"password":"AdminPass=format",
+	"password":"password=password",
 	"method":"chacha20-ietf-poly1305",
 	"timeout":60,
 	"nameserver":"1.1.1.1",
 	"local_address":"0.0.0.0",
-	"local_port":10080,
+	"local_port":1080,
 	"plugin":"v2ray-plugin",
-	"plugin_opts":"tls;host=www.suningfootball.com;path=/shadowsocks"
+	"plugin_opts":"tls;host=xxxx.com;path=/"
 
 }
