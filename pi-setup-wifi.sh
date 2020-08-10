@@ -2,8 +2,8 @@
  # @author: Haoran Qi
  # @Date: 2020-01-16 13:42
  # @LastEditors  : Haoran Qi
- # @LastEditTime : 2020-08-10 08:53
- # @FilePath     : \MyRepository\RaspberryPi\pi-setup-wifi.sh
+ # @LastEditTime : 2020-08-10 19:36
+ # @FilePath     : \A3SPL\ss-docker\pi-setup-wifi.sh
  # @Description: TODO
  ###
 #! /bin/bash
@@ -21,9 +21,16 @@ sudo sysctl -p
 # Config dhcpcd
 sudo bash -c "cat >>/etc/dhcpcd.conf <<EOF
 #this line existes to make sure below starts in a new line
-interface=wlan0
+interface eth0
+
+interface wlan0
 static ip_address=192.168.3.1/24
 nohook wpa_supplicant
+
+interface eth1
+static ip_address=192.168.4.1/24
+nohook wpa_supplicant
+
 EOF"
 sudo systemctl restart dhcpcd
 
@@ -32,6 +39,9 @@ sudo bash -c "cat >>/etc/dnsmasq.conf <<EOF
 #this line existes to make sure below starts in a new line
 interface=wlan0
 dhcp-range=192.168.3.200,192.168.3.230,255.255.255.0,24h
+
+interface=eth1
+dhcp-range=192.168.4.100,192.168.4.105,255.255.255.0,24h
 EOF"
 
 # Config hostapd
@@ -68,9 +78,11 @@ sudo systemctl enable dnsmasq
 sudo systemctl enable dhcpcd
 
 sudo bash -c "cat >>/etc/rc.local <<EOF
-iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE  
-iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT  
-iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
+# 8443->22
+iptables -t nat -A PREROUTING -p tcp --dport 8443 -j REDIRECT --to-ports 22
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE  
+sudo iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT  
+sudo iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
 iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT
 
