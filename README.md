@@ -2,4 +2,4 @@
 
 ### This project is a client version of shadowsocks-libev, and including the v2ray-plugin
 
-v2ray->4.27
+update v2ray -> 4.27.4
