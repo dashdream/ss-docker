@@ -2,8 +2,8 @@
  # @author       : Haoran Qi
  # @Date         : 1970-01-01 08:00
  # @LastEditors  : Haoran Qi
- # @LastEditTime : 2020-09-26 16:10
- # @FilePath     : /ss-docker/arm7/v2ray-plugin.sh
+ # @LastEditTime : 2020-10-20 15:16
+ # @FilePath     : \ss-docker\arm7\v2ray-plugin.sh
  # @Copyright 2020 Haoran Qi
  # @Description  : ---
 ### 
@@ -19,7 +19,6 @@
 # https://github.com/shadowsocks/v2ray-plugin
 
 ARCH="arm7"
-
 [ -z "${ARCH}" ] && echo "Error: Not supported OS Architecture" && exit 1
 # Download v2ray-plugin binary file
 V2RAY_PLUGIN_FILE="v2ray-plugin_linux_${ARCH}"
