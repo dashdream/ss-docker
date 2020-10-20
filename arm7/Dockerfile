@@ -5,8 +5,10 @@
 # https://github.com/shadowsocks/simple-obfs
 # https://github.com/shadowsocks/v2ray-plugin
 
-FROM multiarch/alpine:armv7-latest-stable
+FROM multiarch/qemu-user-static:x86_64-arm as qemu
+FROM arm32v7/alpine:latest As complie-image
 LABEL maintainer="format"
+COPY --from=qemu /usr/bin/qemu-arm-static /usr/bin
 
 WORKDIR /root
 COPY v2ray-plugin.sh /root/v2ray-plugin.sh
