@@ -8,6 +8,7 @@
 FROM multiarch/alpine:armv7-latest-stable
 LABEL maintainer="format"
 
+COPY qemu-arm-static /usr/bin
 WORKDIR /root
 COPY v2ray-plugin.sh /root/v2ray-plugin.sh
 COPY config_sample.json /etc/shadowsocks-libev/config.json
