@@ -8,7 +8,7 @@
 FROM arm32v7/alpine:latest
 LABEL maintainer="format"
 
-COPY qemu-armhf-static /usr/bin
+COPY /usr/bin/qemu-arm-static /usr/bin
 WORKDIR /root
 COPY v2ray-plugin.sh /root/v2ray-plugin.sh
 COPY config_sample.json /etc/shadowsocks-libev/config.json
