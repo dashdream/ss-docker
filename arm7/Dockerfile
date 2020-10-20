@@ -5,10 +5,10 @@
 # https://github.com/shadowsocks/simple-obfs
 # https://github.com/shadowsocks/v2ray-plugin
 
-FROM multiarch/alpine:armv7-latest-stable
+FROM arm32v7/alpine:latest
 LABEL maintainer="format"
 
-COPY qemu-arm-static /usr/bin
+COPY qemu-armhf-static /usr/bin
 WORKDIR /root
 COPY v2ray-plugin.sh /root/v2ray-plugin.sh
 COPY config_sample.json /etc/shadowsocks-libev/config.json
