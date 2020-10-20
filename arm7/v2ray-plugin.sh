@@ -1,3 +1,12 @@
+###
+ # @author       : Haoran Qi
+ # @Date         : 1970-01-01 08:00
+ # @LastEditors  : Haoran Qi
+ # @LastEditTime : 2020-09-26 16:10
+ # @FilePath     : /ss-docker/arm7/v2ray-plugin.sh
+ # @Copyright 2020 Haoran Qi
+ # @Description  : ---
+### 
 #!/bin/sh
 #
 # This is a Shell script for shadowsocks-libev based alpine with Docker image
